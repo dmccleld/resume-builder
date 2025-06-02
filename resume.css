@@ -1,0 +1,322 @@
+/* resume.css */
+
+/* Set Roboto as the main font for preview and embedded sections */
+.markdown-preview-view {
+  font-family: 'Roboto', 'Segoe UI', sans-serif !important;
+  padding-left: 0in !important;
+  padding-right: 0in !important;
+}
+
+/* Apply Roboto to Dataview outputs */
+.dataview, .dataview-container {
+  font-family: 'Roboto', 'Segoe UI', sans-serif !important;
+}
+
+/* Apply Roboto to embedded notes */
+.markdown-embed-content {
+  font-family: 'Roboto', 'Segoe UI', sans-serif !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Print-specific adjustments */
+@media print {
+  /* Reduce top page margin */
+  @page {
+    margin-top: 0.5in;   /* default is ~1 inch */
+    margin-bottom: 0.75in;
+    margin-left: 0.25in;
+    margin-right: 0.25in;
+	@top-center {
+      content: element(resume-header);
+    }
+  }
+  
+  
+
+  /* Remove top padding/margin from document content */
+  body {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+
+  .markdown-preview-view {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+  
+  .contact-header-print {
+    position: running(resume-header);
+    page-break-after: avoid;
+    font-size: 10pt;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 0.25in;
+  }
+
+  /* Reduce space above first heading */
+  h1, h2, h3 {
+    margin-top: 0.25em !important;
+  }
+}
+
+@media screen {
+  .contact-header-print.repeat-only {
+    display: none;
+  }
+}
+
+.resume-grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 2em;
+  align-items: start;
+}
+
+.resume-header {
+  font-size: 1.25em;
+  font-weight: bold;
+}
+
+.markdown-embed-title {
+	display: none !important;
+}
+
+/* Remove left border from embedded notes */
+.markdown-embed {
+  border: none !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+/* Optional: Remove background shading too */
+.markdown-embed-content {
+  background-color: transparent !important;
+  padding: 0 !important;
+}
+
+/* Remove top/bottom padding around embedded notes */
+.markdown-embed {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Remove top/bottom margin from embedded content */
+.markdown-embed-content {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Tighten spacing around headings */
+.markdown-preview-view h1,
+.markdown-preview-view h2,
+.markdown-preview-view h3,
+.markdown-preview-view h4 {
+  margin-top: 0 !important;
+  margin-bottom: 0.25em !important;
+}
+
+.embed-columns .markdown-embed-content {
+  column-count: 2;
+  column-gap: 2em;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.embed-columns .markdown-embed-content p {
+  break-inside: avoid;
+  margin: 0.25em 0 !important;
+}
+
+/* Grid layout for skill categories */
+.skill-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2em;
+  row-gap: 0.5em;
+  margin: 0;
+  padding: 0;
+}
+
+/* Each skill category block */
+.skill-block {
+  break-inside: avoid;
+  font-size: 0.95em;
+  margin: 0;
+  padding: 0;
+}
+
+/* 2-column grid layout */
+.skills-2col .skill-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2em;
+  row-gap: 0.5em;
+}
+
+/* 1-column layout version */
+.skills-1col .skill-grid {
+  display: block;
+}
+
+/* Shared styling for skill category blocks */
+.skill-block {
+  break-inside: avoid;
+  font-size: 0.95em;
+  margin: 0.25em 0;
+}
+
+.contact-header-boxed {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 10pt;
+  margin-bottom: 0.5em;
+}
+
+.contact-links {
+  display: flex;
+  gap: 0.5em;
+}
+
+.boxed-link {
+  display: inline-block;
+  padding: 6px 14px;
+  margin: 4px 6px 4px 0;
+  font-size: 0.85em;
+  font-weight: 500;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #007acc;
+  border-radius: 999px; /* Makes it pill-shaped */
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.boxed-link:hover {
+  background-color: #005fa3;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.contact-name {
+  font-size: 2.25em !important; /* Bigger impact */
+  font-weight: 800 !important;  /* Extra-bold */
+  font-variant: small-caps !important;
+  letter-spacing: 0.09em !important; /* Slight spacing for clarity */
+  margin: 0 0 0.25em 0 !important;
+  line-height: 1.1 !important;
+  color: #222; /* Slightly richer than black */
+}
+
+h1.contact-name {
+	font-size: 3em !important;
+	padding-top: 0.25em;
+	padding-bottom: 0.1em;
+}
+
+.contact-header-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1em;
+  font-size: 10pt;
+  margin-bottom: 0.5em;
+}
+
+.contact-text {
+  margin-top: 0.1em;
+}
+
+.contact-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+/* Style horizontal lines (dividers) */
+hr {
+  border: none;
+  border-top: 1px solid #ccc; /* Light gray line */
+  margin: 0em 0;            /* Vertical spacing */
+  height: 1px;
+}
+
+h3 {
+  font-weight: bold;
+  font-size: 1.1em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #ccc;
+  margin-top: 1.5em;
+}
+
+.company-entry {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75em;
+  margin-bottom: 0.75em;
+  break-inside: avoid;
+}
+
+.company-logo {
+  height: 40px;
+  width: 80px;
+  object-fit: contain;
+  border-radius: 4px;
+  filter: grayscale(100%); /* Keep logos muted */
+  opacity: 0.8;
+  margin-top: 2px;
+}
+
+/* Section Headers */
+h2 {
+  font-size: 1.3em;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid #ccc;
+  margin-top: 1.5em;
+  padding-bottom: 0.25em;
+}
+
+/* Role Title + Company Format */
+.role-title {
+  font-weight: 600;
+  font-size: 1.05em;
+}
+
+.role-details {
+  font-size: 0.95em;
+  line-height: 1.4;
+}
+
+.role-range {
+  color: #999;
+  font-size: 0.9em;
+}
+
+.role-strengths {
+  color: #333;
+}
+
+.company-name {
+  font-weight: normal;
+  color: #555;
+  font-size: 0.95em;
+  font-style: italic;
+}
+
+/* Resume body text */
+.resume-body {
+  font-size: 0.95em;
+  line-height: 1.5;
+}
+
+

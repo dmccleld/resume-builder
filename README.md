@@ -1,73 +1,105 @@
 # resume-builder
 # 🧾 Obsidian Resume Builder Guide
 
-This guide explains how to use and extend the Obsidian-based Resume Builder powered by DataviewJS. It enables you to build tailored resumes using a modular and tag-based approach.
+This guide helps you create customized resumes using Obsidian and DataviewJS, leveraging tags to filter relevant content dynamically.
+
+---
+
+## 🔧 Prerequisites
+
+Before you begin using this resume builder, ensure you have the following:
+
+- **Obsidian**: Installed and set up with a vault.
+    
+- **Dataview Plugin**: Installed and enabled in Obsidian.
+    
+- **Basic YAML Knowledge**: Comfort with editing frontmatter and markdown.
+    
+- **Folder Structure**: Store all resume-related files (e.g., `contact-info.md`, `skills.md`) in the same vault folder or appropriately linked structure.
+    
+- **Consistent Tag Usage**: Choose and consistently apply tags like `ai`, `frontend`, etc., to categorize your resume content effectively.
+    
+- **Custom CSS (Optional)**: For better control over formatting, use `resume.css`.
+    
 
 ---
 
 ## 📁 File Overview
 
-Your vault includes the following key files:
+Your vault includes the following modular components:
 
-- `contact-info.md` – Basic personal information.
-- `summary.md` – Contains summary and value proposition entries, each tagged for resume variants.
-- `skills.md` – Lists your skills across categories, tagged for filtering.
-- `education.md` – Educational history including degrees, courses, and certifications.
-- `projects.md` – Personal and professional projects, with tags.
-- `company-name.md`, etc. – Experience roles and achievements grouped per company.
-- `resume-*.md` – Layout templates that assemble the resume components.
-- `resume.css` – Provides clean styling for print and preview.
+- `contact-info.md` – Your basic contact information.
+    
+- `summary.md` – Summary statements and value propositions, tagged.
+    
+- `skills.md` – Categorized technical and core skills.
+    
+- `education.md` – Degrees, certifications, and courses.
+    
+- `projects.md` – Work and personal projects with tag-based metadata.
+    
+- `company-name.md` – Work history, role details, and achievements.
+    
+- `resume-*.md` – Tagged templates for resume construction.
+    
+- `resume.css` – Print-ready styling.
+    
 
 ---
 
-## 🚧 How to Build a Tagged Resume
+## 🚧 Building a Tagged Resume
 
-### 1. Enter Your Data
+### 1. Add Your Data
 
-In the main content files, each entry should include appropriate tags:
+Use tags to mark relevant entries for each resume variant:
 
 ```yaml
 tags: [ai, frontend]
 ```
 
-Update these files:
-- `skills.md` (under `applications`, `programming`, `technologies`, `dbms`, `systems`, `core`)
-- `projects.md` (each project)
-- `education.md` (degrees, courses, certifications)
-- `company-name.md` (roles and bullets)
-- `summary.md` (both `summaries` and `valueprop`)
+Apply to:
+
+- Skills categories in `skills.md`
+    
+- Entries in `projects.md`, `education.md`, and `company-name.md`
+    
+- Summaries and value props in `summary.md`
+    
 
 ---
 
-### 2. Create a New Resume Variant
+### 2. Create a Tagged Resume Layout
 
-#### A. Duplicate a Layout File
+#### A. Duplicate the Layout File
 
-Choose a layout like:
-```plaintext
-resume-portfolio-tag1.md
+Copy a base layout:
+
+`resume-sequential-tag1.md`
+
+Rename it:
+
+`resume-sequential-yourtag.md`
+
+#### B. Duplicate Section Files
+
+Create section-specific files:
+
+```
+resume-summary-yourtag.md
+resume-skills-yourtag.md
+resume-projects-yourtag.md
+resume-experience-yourtag.md
+resume-education-yourtag.md
 ```
 
-Duplicate it and rename to:
-```plaintext
-resume-portfolio-yourtag.md
-```
 
-#### B. Duplicate Component Files
+Each should include logic to detect the tag from the filename:
 
-Duplicate all `DataviewJS` files, and update the filenames to reflect your tag:
+`const tag = dv.current().file.name.split("-")[2] ?? "general";`
 
-```plaintext
-resume-summary-tag1.md     → resume-summary-yourtag.md
-resume-skills-tag1.md      → resume-skills-yourtag.md
-resume-projects-tag1.md    → resume-projects-yourtag.md
-resume-experience-tag1.md  → resume-experience-yourtag.md
-resume-education-tag1.md   → resume-education-yourtag.md
-```
+#### C. Update Layout References
 
-#### C. Update Layout File Embeds
-
-In `resume-portfolio-yourtag.md`, update the embedded references to:
+In `resume-sequential-yourtag.md`:
 
 ```markdown
 ![[resume-contact-info]]
@@ -77,91 +109,67 @@ In `resume-portfolio-yourtag.md`, update the embedded references to:
 ![[resume-experience-yourtag]]
 ![[resume-education-yourtag]]
 ```
+---
+
+### 3. Customize the Experience Section
+
+In `resume-experience-yourtag.md`, define which company files to include:
+
+`const files = ["company-name", "company-other"];`
 
 ---
 
-### 3. Update DataviewJS in Each Section
+### 4. Tag All Content
 
-#### A. Tag Extraction
+Ensure every entry in each file includes the correct tag:
 
-Ensure every `resume-*-yourtag.md` file includes the following logic:
+`tags: [yourtag]`
 
-```javascript
-const tag = dv.current().file.name.split("-")[2] ?? "general";
+---
+
+## 🧪 Example: “AI” Resume Variant
+
+1. **Tag Entries:**
+    
+`tags: [ai]`
+
+2. **Create Files:**
+    
+- `resume-sequential-ai.md`
+    
+- `resume-summary-ai.md`
+    
+- `resume-skills-ai.md`
+    
+- `resume-projects-ai.md`
+    
+- `resume-experience-ai.md`
+    
+- `resume-education-ai.md`
+    
+
+3. **Reference Companies:**
+    
+`const files = ["company-openai", "company-google"];`
+
+4. **Embed Sections in Layout:**
+    
+```markdown
+![[resume-contact-info]]
+![[resume-summary-ai]]
+![[resume-skills-ai]]
+![[resume-projects-ai]]
+![[resume-experience-ai]]
+![[resume-education-ai]]
 ```
-
-This auto-detects the tag from the filename.
-
-#### B. Experience Files List
-
-In `resume-experience-yourtag.md`, locate this line:
-
-```javascript
-const files = ["company-name"];
-```
-
-Update it to include all company files you want to source experience from, like:
-
-```javascript
-const files = ["company-abc", "company-def"];
-```
-
-Leave out the `.md` extension.
-
 ---
 
-### 4. Tag Your Data
+## 🧠 Tips
 
-Ensure all data entries (skills, projects, education, experience) are tagged to match the tag you used in your layout and section filenames.
-
-Example:
-```yaml
-tags: [ai]
-```
-
----
-
-## 🧪 Example: Creating an “AI” Resume
-
-1. **Tag your entries:**
-   - In all content files, use:
-     ```yaml
-     tags: [ai]
-     ```
-
-2. **Create the files:**
-   - `resume-portfolio-ai.md`
-   - `resume-summary-ai.md`
-   - `resume-skills-ai.md`
-   - `resume-projects-ai.md`
-   - `resume-experience-ai.md`
-   - `resume-education-ai.md`
-
-3. **Update experience section to include correct file names:**
-   ```javascript
-   const files = ["company-openai", "company-google"];
-   ```
-
-4. **Embed files in layout:**
-   ```markdown
-   ![[resume-contact-info]]
-   ![[resume-summary-ai]]
-   ![[resume-skills-ai]]
-   ![[resume-projects-ai]]
-   ![[resume-experience-ai]]
-   ![[resume-education-ai]]
-   ```
-
-5. **Preview in Obsidian**  
-   Use Preview mode and print to PDF for export.
-
----
-
-## 🖼 Tips
-
-- Use simple tags like `ai`, `data`, `frontend` for clarity.
-- Ensure all `.md` files are correctly named and tags match.
-- Update `resume.css` to customize your resume appearance for screen and print.
-- You can add or remove embedded sections based on your resume needs.
-
----
+- Use simple, intuitive tags (`ai`, `data`, `frontend`).
+    
+- Match file names and tags exactly.
+    
+- Customize `resume.css` for appearance.
+    
+- Use Preview mode in Obsidian to print or export your resume.

@@ -1,0 +1,6 @@
+![[resume-contact-info]]
+![[resume-valueprop-tag1]]
+![[resume-skills-tag1]]
+![[resume-projects-tag1]]
+![[resume-brief-experience]]
+![[resume-education-tag1]]

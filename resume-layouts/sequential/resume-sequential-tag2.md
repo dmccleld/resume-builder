@@ -1,0 +1,5 @@
+![[resume-contact-info]]
+![[resume-summary-tag2]]
+![[resume-skills-tag2]]
+![[resume-experience-tag2]]
+![[resume-education-tag2]]

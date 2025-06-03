@@ -5,6 +5,12 @@ This guide helps you create customized resumes using Obsidian and DataviewJS, le
 
 ---
 
+## 📜 License
+
+This tool is licensed under a custom license permitting only non-commercial use. Commercial use is prohibited without explicit permission. See [LICENSE](./LICENSE) for details.
+
+---
+
 ## 🔧 Prerequisites
 
 Before you begin using this resume builder, ensure you have the following:
@@ -173,3 +179,13 @@ Ensure every entry in each file includes the correct tag:
 - Customize `resume.css` for appearance.
     
 - Use Preview mode in Obsidian to print or export your resume.
+
+---
+
+## 🙏 Acknowledgments
+
+This tool was built using [Obsidian](https://obsidian.md) and its powerful [Dataview plugin](https://github.com/blacksmithgu/obsidian-dataview), which enables dynamic, tag-based content rendering. 
+
+Dataview is licensed under the MIT License. See [Dataview's License](https://github.com/blacksmithgu/obsidian-dataview/blob/master/LICENSE) for details.
+
+Special thanks to the Obsidian community for fostering such a rich plugin ecosystem.

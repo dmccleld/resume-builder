@@ -1,8 +1,6 @@
-```dataviewjs
 const c = dv.page("contact-info");
 
 let html = `
-<span class="title">
 <div class="contact-header-grid">
   <div class="contact-left">
     <h1 class="contact-name">${c.name}</h1>
@@ -20,7 +18,5 @@ if (c.website?.url && c.website?.label) {
   html += `<a href="${c.website.url}" class="boxed-link">${c.website.label}</a>`;
 }
 
-html += `</div></div></span>`;
+html += `</div></div>`;
 dv.el("div", html);
-
-```
